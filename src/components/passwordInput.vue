@@ -1,10 +1,14 @@
 <template>
     <div>
         <span :class="inputClass" >
-            <input class="input__field--jiro" type="text" id="email-input" v-model="input"/>
+            <input class="input__field--jiro" :type="inputType" id="email-input" v-model="input" :style="{ letterSpacing: inputLetterSpacing }"/>
             <label class="input__label--jiro" for="email-input" :style="{ color: allColor[index]}">
                 <span class="input__label-content--jiro" >密码{{ addContent }}</span>
             </label>
+			<button v-show="isDisplay()" @click="togglePasswordVisibility" class="toggle-password-btn">
+				<img v-if="displayPW" src="../assets/eye1.svg" class="eyes" @click="eyeClickHandler">
+				<img v-else="displayPW" src="../assets/eye2.svg" class="eyes" @click="eyeClickHandler">
+        	</button>
 		</span>
     </div>
 </template>
@@ -18,7 +22,10 @@
                 inputLabelClass: ["input__label--jiro"],
                 allColor: ["#3a6089", "#DC143C"],
                 addContent: "",
-                index: 0
+                index: 0,
+				displayPW: false,
+				inputType: "password",
+				inputLetterSpacing: "0.2rem"
             }
         },
         watch:{
@@ -44,7 +51,27 @@
                     this.addContent = "（请确保至少含有1个大写字母、小写字母、数字、特殊符号，密码长度大于8位）"
                 }
             }
-        }
+        },
+		methods:{
+			isDisplay(){
+				if(this.input == "") {
+					return false
+				} else {
+					return true
+				}
+			},
+			eyeClickHandler(){
+				if(this.displayPW){
+					this.displayPW = false
+					this.inputType = "password"
+					this.inputLetterSpacing = "0.2rem"
+				} else {
+					this.displayPW = true
+					this.inputType = "text"
+					this.inputLetterSpacing = "0"
+				}
+			}
+		}
     }
 </script>
 
@@ -182,5 +209,26 @@
 	transition-delay: 0.3s;
 	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.toggle-password-btn {
+  position: absolute;
+  right: -5%;
+  top: 30%;
+  transform: translateY(-50%);
+  margin-left: 1em;
+  padding: 0.5em 0.5em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 80%;
+}
+
+.toggle-password-btn i {
+  font-size: 16px;
+}
+.eyes {
+  width: 2rem;
+  height: 2rem;
 }
 </style>

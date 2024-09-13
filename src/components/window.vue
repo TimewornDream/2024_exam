@@ -1,7 +1,7 @@
 
 <template>
     <div :class="windowClass">
-        <img src="../assets/genshin.png" class="genshin" :disabled="true">
+        <img src="../assets/genshin.png" class="genshin">
         <emailInput/>
         <passwordInput  @updatePW="updatePWHandler"/>
         <ensurePwInput :register="register" :password="password"/>

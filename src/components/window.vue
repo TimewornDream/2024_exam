@@ -1,13 +1,22 @@
+
 <template>
-    <div :class="windowClass">123</div>
+    <div :class="windowClass">
+        <img src="../assets/genshin.png" class="genshin" :disabled="true">
+        <emailInput/>
+    </div>
 </template>
 
+<script setup>
+    import emailInput from './emailInput.vue';
+</script>
 <script>
 
+
+
 export default {
+    
     data(){
         return {
-            msg: "你好",
             windowClass: ["window", "fadeInDown"]
         }
     }

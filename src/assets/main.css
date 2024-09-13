@@ -20,6 +20,8 @@ body {
 
 .window {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: auto;
   width: 30%;
   min-width: 30%;
@@ -30,8 +32,18 @@ body {
 	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
   box-shadow: 0 .1rem .2rem .2rem rgba(0, 0, 0, 0.2);
+  user-select: none;
 }
 
+.genshin {
+  width: 4rem;
+  height: 4rem;
+  user-select: none;
+
+}
+
+
+/* 飞出 */
 .fadeInDown {
   animation: fadeInDown 1s;
   -webkit-animation: fadeInDown 1s;
@@ -47,13 +59,5 @@ body {
       opacity: 1;
   }
 }
-@-webkit-keyframes fadeInDown{
-  0% {
-      margin-top: -100rem;
-      opacity: 0;
-  }
-  100% {
-      margin-top: 0;
-      opacity: 1;
-  }
-}
+
+/* 输入框 */

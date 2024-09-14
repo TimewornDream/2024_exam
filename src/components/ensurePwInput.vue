@@ -47,9 +47,11 @@
                 if(this.password == newInput){
                     this.index = 0
                     this.addContent = ""
+					this.$emit("updateEnsureStatus", false)
                 } else {
                     this.index = 1
                     this.addContent = "（两次输入密码不一致）"
+					this.$emit("updateEnsureStatus", true)
                 }
             }
         },

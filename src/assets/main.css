@@ -78,7 +78,7 @@ body {
   position: relative;
   display: inline-block;
   border-radius: 20px;
-  background-color: #66ca9d;
+  background-color: #50bc8c;
   border: none;
   color: #ffff;
   text-align: center;
@@ -127,9 +127,12 @@ body {
   padding-right: 0rem;
 }
 
-.fade-enter-active,
-.fade-leave-active {
+.fade-enter-active {
   transition: opacity 2s ease;
+}
+
+.fade-leave-active {
+  transition: opacity 0.5s ease;
 }
 
 .fade-enter-from,
@@ -137,8 +140,9 @@ body {
   opacity: 0;
 }
 
-
 .input--jiro {
+  user-select: none;
+  touch-action: none;
   position: relative;
   z-index: 1;
   display: inline-block;
@@ -285,6 +289,8 @@ body {
   cursor: pointer;
   transition: background-color 0.3s;
   height: 80%;
+  user-select: none;
+  touch-action: none;
 }
 
 .toggle-password-btn i {
@@ -293,4 +299,6 @@ body {
 .eyes {
   width: 2rem;
   height: 2rem;
+  user-select: none;
+  touch-action: none;
 }

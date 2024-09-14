@@ -5,10 +5,10 @@
         <emailInput @updateEmail="updateEmailHandler"/>
         <TransitionGroup name="fade">
             <passwordInput v-if="isDisplayPWInput()"  @updatePW="updatePWHandler"/>
-            <ensurePwInput v-if="isDisplayPWInput()" :register="register" :password="password"/>
+            <ensurePwInput v-if="isDisplayPWInput()" @updateEnsureStatus="updateEnsureStatusHandler" :register="register" :password="password"/>
         </TransitionGroup>
         <button :disabled="isDisabled[0]" class="niceButton" @click="continueHandler" v-if="status[0] == 0"><span>继续</span></button>
-        <button disabled="true" class="niceButton" @click="registerHandler"  v-if="status[0] == 1 && register"><span>注册</span></button>
+        <button :disabled="isDisabled[1] || isDisabled[2]" class="niceButton" @click="registerHandler"  v-if="status[0] == 1 && register"><span>注册</span></button>
         <button :disabled="isDisabled[1]" class="niceButton" @click="loginHandler" v-if="status[0] == 1 && !register"><span>登录</span></button>
     </div>
 </template>
@@ -47,10 +47,13 @@ export default {
             }
             this.isDisabled[0] = data.isDisabled
         },
+        updateEnsureStatusHandler(status){
+            this.isDisabled[2] = status
+        },
         continueHandler(){
             if(this.email != ""){
                 this.status[0] = 1
-                if(this.email == "123@qq.com") {
+                if(localStorage.getItem(this.email) != null) {
                     this.register = false
                     this.windowClass[2] = "window__login"
                 } else {
@@ -66,8 +69,25 @@ export default {
             return true
         },
         registerHandler(){
-            this
-        }
+            localStorage.setItem(this.email, this.password)
+            alert("注册成功")
+            this.resetToEmailInput()
+        },
+        loginHandler(){
+            if(localStorage.getItem(this.email) == this.password){
+                alert("登录成功")
+            } else {
+                alert("密码错误")
+            }
+        },
+        resetToEmailInput() {
+            this.password = "";
+            this.status[0] = 0;
+            this.register = false;
+            this.windowClass[2] = "";
+            this.isDisabled[1] = true;
+            this.isDisabled[2] = true;
+        },
     }
 }
 

@@ -22,10 +22,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
   margin: auto;
-  width: 30%;
-  min-width: 30%;
-  min-height: 30%;
+  width: 30rem;
+  height: 0rem;
+  min-width: 30rem;
+  min-height: 30rem;
   padding: 2rem;
   border-radius: 1rem;
   background: rgba(147, 228, 240, 0.6);
@@ -33,15 +35,22 @@ body {
 	backdrop-filter: blur(10px);
   box-shadow: 0 .1rem .2rem .2rem rgba(0, 0, 0, 0.2);
   user-select: none;
+  padding-bottom: 3rem;
+  transition: height 0.5s ease-in-out;
+}
+
+.window__register {
+  height: 40rem;
 }
 
 .genshin {
+  position: fixed;
+  z-index: 20;
+  top: 3rem;
   width: 4rem;
   height: 4rem;
   user-select: none;
-
 }
-
 
 /* 飞出 */
 .fadeInDown {
@@ -60,4 +69,213 @@ body {
   }
 }
 
-/* 输入框 */
+/* 悬停添加箭头图标 */
+.niceButton {
+  position: relative;
+  display: inline-block;
+  border-radius: 20px;
+  background-color: #66ca9d;
+  border: none;
+  color: #ffff;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 1rem;
+  width: 20rem;
+  transition: transform 0.5s ease-in-out;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-top: 2rem;
+  margin-left: 1rem; 
+  box-shadow: 0 .2rem .2rem 0 rgba(0,0,0,.24),
+    0 .2rem .2rem 0 rgba(0,0,0,.19);
+}
+.niceButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.niceButton span::after {
+  content: ">";
+  position: absolute;
+  opacity: 0;
+  top: .1rem;
+  right: -2rem;
+  transition: 0.5s;
+}
+.niceButton:hover span {
+  padding-right: 2rem;
+}
+.niceButton:hover span::after {
+  opacity: 1;
+  right: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+
+.input--jiro {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin: 1em;
+  width: 20rem;
+  vertical-align: top;
+  margin-top: 2em;
+}
+
+.input--jiro__email {
+  position: fixed;
+  top: 10rem;
+  left: 6rem;
+  z-index: 1;
+  display: inline-block;
+  margin: 1em;
+  width: 20rem;
+  vertical-align: top;
+  margin-top: 2em;
+}
+
+.input__field--jiro {
+  outline: none;
+  position: relative;
+  display: block;
+  float: left;
+  border: none;
+  border-radius: 0;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 0.85em 0.5em;
+  width: 100%;
+  background: transparent;
+  color: #DDE2E2;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.input__label--jiro {
+  display: inline-block;
+  padding: 0 1em;
+  width: 40%;
+  font-weight: bold;
+  font-size: 80%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  left: 0;
+  padding: 0 0.85em;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  pointer-events: none;
+}
+
+.input__label-content--jiro {
+  position: relative;
+  display: block;
+  padding: 1.6em 0;
+  width: 100%;
+  -webkit-transition: -webkit-transform 0.3s 0.3s;
+  transition: transform 0.3s 0.3s;
+}
+
+.input__label--jiro::before,
+.input__label--jiro::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+}
+
+.input__label--jiro::before {
+  border-top: 2px solid #3a6089;
+  -webkit-transform: translate3d(0, 100%, 0) translate3d(0, -2px, 0);
+  transform: translate3d(0, 100%, 0) translate3d(0, -2px, 0);
+  -webkit-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+
+.input__label--jiro::after {
+  z-index: -1;
+  background: #3a6089;
+  -webkit-transform: scale3d(1, 0, 1);
+  transform: scale3d(1, 0, 1);
+  -webkit-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
+}
+
+.input__field--jiro:focus,
+.input--filled .input__field--jiro {
+  opacity: 1;
+  -webkit-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+
+.input__field--jiro:focus + .input__label--jiro .input__label-content--jiro,
+.input--filled .input__label-content--jiro {
+  -webkit-transform: translate3d(0, -80%, 0);
+  transform: translate3d(0, -80%, 0);
+  -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.input__field--jiro:focus + .input__label--jiro::before,
+.input--filled .input__label--jiro::before {
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+
+.input__field--jiro:focus + .input__label--jiro::before,
+.input--filled .input__label--jiro::before {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.input__field--jiro:focus + .input__label--jiro::after,
+.input--filled .input__label--jiro::after {
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+  -webkit-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+  -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.toggle-password-btn {
+  position: absolute;
+  right: -5%;
+  top: 30%;
+  transform: translateY(-50%);
+  margin-left: 1em;
+  padding: 0.5em 0.5em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 80%;
+}
+
+.toggle-password-btn i {
+  font-size: 16px;
+}
+.eyes {
+  width: 2rem;
+  height: 2rem;
+}

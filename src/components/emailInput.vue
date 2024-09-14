@@ -14,7 +14,7 @@
         data(){
             return {
                 input: "",
-                inputClass: ["input", "input--jiro", ""],
+                inputClass: ["input--jiro__email", ""],
                 inputLabelClass: ["input__label--jiro"],
                 allColor: ["#3a6089", "#DC143C"],
                 addContent: "",
@@ -25,9 +25,9 @@
             input(newInput){
                 // 内容不为空，保持展开
                 if(newInput != ""){
-                    this.inputClass[2] = "input--filled"
+                    this.inputClass[1] = "input--filled"
                 } else {
-                    this.inputClass[2] = ""
+                    this.inputClass[1] = ""
                     this.index = 0
                     this.addContent = ""
                     return
@@ -37,6 +37,7 @@
                 if(re.test(newInput)){
                     this.index = 0
                     this.addContent = ""
+					this.$emit("updateEmail", newInput)
                 } else {
                     this.index = 1
                     this.addContent = "（格式有误）"

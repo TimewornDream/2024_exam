@@ -30,7 +30,6 @@
         },
         watch:{
             input(newInput){
-				this.$emit("updatePW", newInput)
                 // 内容不为空，保持展开
                 if(newInput != ""){
                     this.inputClass[2] = "input--filled"
@@ -45,9 +44,11 @@
                 if(re.test(newInput)){
                     this.index = 0
                     this.addContent = ""
+                    this.$emit("updatePW", {isDisabled: false, password: newInput})
                 } else {
                     this.index = 1
                     this.addContent = "（请确保至少含有1个大写字母、小写字母、数字、特殊符号，密码长度大于8位）"
+                    this.$emit("updatePW", {isDisabled: true, password: newInput})
                 }
             }
         },

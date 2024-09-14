@@ -37,10 +37,11 @@
                 if(re.test(newInput)){
                     this.index = 0
                     this.addContent = ""
-					this.$emit("updateEmail", newInput)
+					this.$emit("updateEmail", {isDisabled: false, email: newInput})
                 } else {
                     this.index = 1
                     this.addContent = "（格式有误）"
+					this.$emit("updateEmail", {isDisabled: true, email: ""})
                 }
             }
         }
